@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\{
 Route::controller(FrontendController::class)->group(function(){
     Route::get('/','index');
     Route::get('/contact','contact')->name('front.contact');
-    Route::get('/post_details','postDetails')->name('front.post_detials');
+    Route::get('/post_details/{id}','postDetails')->name('front.post_detials');
 });
 Route::get('/dashboard', function () {
     return view('dashboard');

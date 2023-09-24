@@ -38,11 +38,6 @@
               <a class="nav-link" href="{{ route('front.contact') }}">Contact</a>
             </li>
             @endif
-            @if (Route::has('front.post_detials'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('front.post_detials') }}">Post Details</a>
-            </li>
-            @endif
             @if (Route::has('login'))
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">Login</a>

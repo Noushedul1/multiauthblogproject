@@ -5,90 +5,57 @@
           <h2 class="h5 section-title">Editors Pick</h2>
           <article class="card">
             <div class="post-slider slider-sm">
-              <img src="{{ asset('frontend') }}/images/post/post-1.jpg" class="card-img-top" alt="post-thumb">
+              <img src="{{ asset('/storage/post_images/'.$editorsPick->image) }}" class="card-img-top" alt="post-thumb">
             </div>
 
             <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Use apples to give your bakes caramel and a moist texture</a></h3>
+              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{ $editorsPick->title }}</a></h3>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
                   <a href="author-single.html" class="card-meta-author">
-                    <img src="{{ asset('frontend') }}/images/john-doe.jpg">
-                    <span>Charls Xaviar</span>
+                    <img src="{{ asset('') }}">
+                    <span>{{ Auth::guard('admin')->user()->name }}</span>
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <i class="ti-timer"></i>2 Min To Read
+                  <i class="ti-timer"></i>{{ $editorsPick->created_at->diffForHumans() }}
                 </li>
                 <li class="list-inline-item">
-                  <i class="ti-calendar"></i>14 jan, 2020
+                  <i class="ti-calendar"></i>{{ $editorsPick->created_at->format('Y-M-D') }}
                 </li>
-                <li class="list-inline-item">
+                {{-- <li class="list-inline-item">
                   <ul class="card-meta-tag list-inline">
                     <li class="list-inline-item"><a href="tags.html">Color</a></li>
                     <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
                     <li class="list-inline-item"><a href="tags.html">Fish</a></li>
                   </ul>
-                </li>
+                </li> --}}
               </ul>
-              <p>It’s no secret that the digital industry is booming. From exciting startups to …</p>
-              <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+              <p>{{ $editorsPick->sub_title }}</p>
+              <a href="{{ route('front.post_detials',$editorsPick->id) }}" class="btn btn-outline-primary">Read More</a>
             </div>
           </article>
         </div>
         <div class="col-lg-4 mb-5">
           <h2 class="h5 section-title">Trending Post</h2>
-
+          @foreach ($trendingPosts as $trendingPost)
           <article class="card mb-4">
             <div class="card-body d-flex">
-              <img class="card-img-sm" src="{{ asset('frontend') }}/images/post/post-3.jpg">
+              <img class="card-img-sm" src="{{ asset('/storage/post_images/'.$trendingPost->image) }}">
               <div class="ml-3">
-                <h4><a href="post-details.html" class="post-title">Advice From a Twenty Something</a></h4>
+                <h4><a href="{{ route('front.post_detials',$trendingPost->id) }}" class="post-title">{{ $trendingPost->title }}</a></h4>
                 <ul class="card-meta list-inline mb-0">
                   <li class="list-inline-item mb-0">
-                    <i class="ti-calendar"></i>14 jan, 2020
+                    <i class="ti-calendar"></i>{{ $trendingPost->created_at->format('Y-D-M') }}
                   </li>
                   <li class="list-inline-item mb-0">
-                    <i class="ti-timer"></i>2 Min To Read
+                    <i class="ti-timer"></i>{{ $trendingPost->created_at->diffForHumans() }}
                   </li>
                 </ul>
               </div>
             </div>
           </article>
-
-          <article class="card mb-4">
-            <div class="card-body d-flex">
-              <img class="card-img-sm" src="{{ asset('frontend') }}/images/post/post-2.jpg">
-              <div class="ml-3">
-                <h4><a href="post-details.html" class="post-title">The Design Files - Homes Minimalist</a></h4>
-                <ul class="card-meta list-inline mb-0">
-                  <li class="list-inline-item mb-0">
-                    <i class="ti-calendar"></i>14 jan, 2020
-                  </li>
-                  <li class="list-inline-item mb-0">
-                    <i class="ti-timer"></i>2 Min To Read
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="card mb-4">
-            <div class="card-body d-flex">
-              <img class="card-img-sm" src="{{ asset('frontend') }}/images/post/post-4.jpg">
-              <div class="ml-3">
-                <h4><a href="post-details.html" class="post-title">The Skinny Confidential</a></h4>
-                <ul class="card-meta list-inline mb-0">
-                  <li class="list-inline-item mb-0">
-                    <i class="ti-calendar"></i>14 jan, 2020
-                  </li>
-                  <li class="list-inline-item mb-0">
-                    <i class="ti-timer"></i>2 Min To Read
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
+          @endforeach
         </div>
 
         <div class="col-lg-4 mb-5">
@@ -96,10 +63,10 @@
 
           <article class="card">
             <div class="post-slider slider-sm">
-              <img src="{{ asset('frontend') }}/images/post/post-5.jpg" class="card-img-top" alt="post-thumb">
+              <img src="{{ asset('/storage/post_images/'.$popularPost->image) }}" class="card-img-top" alt="post-thumb">
             </div>
             <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">How To Make Cupcakes and Cashmere Recipe At Home</a></h3>
+              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{ $popularPost->title }}</a></h3>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
                   <a href="author-single.html" class="card-meta-author">
@@ -108,21 +75,21 @@
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <i class="ti-timer"></i>2 Min To Read
+                  <i class="ti-timer"></i>{{ $popularPost->created_at->format('Y-M-D') }}
                 </li>
                 <li class="list-inline-item">
-                  <i class="ti-calendar"></i>14 jan, 2020
+                  <i class="ti-calendar"></i>{{ $popularPost->created_at->diffForHumans() }}
                 </li>
-                <li class="list-inline-item">
+                {{-- <li class="list-inline-item">
                   <ul class="card-meta-tag list-inline">
                     <li class="list-inline-item"><a href="tags.html">City</a></li>
                     <li class="list-inline-item"><a href="tags.html">Food</a></li>
                     <li class="list-inline-item"><a href="tags.html">Taste</a></li>
                   </ul>
-                </li>
+                </li> --}}
               </ul>
-              <p>It’s no secret that the digital industry is booming. From exciting startups to …</p>
-              <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+              <p>{{ $popularPost->sub_title }}</p>
+              <a href="{{ route('front.post_detials',$popularPost->id) }}l" class="btn btn-outline-primary">Read More</a>
             </div>
           </article>
         </div>

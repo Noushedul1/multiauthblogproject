@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     // start of index
     public function index() {
-        return view('welcome');
+        $posts = Post::all();
+        return view('welcome',
+        [
+            'posts'=>$posts
+        ]
+    );
     }
     // end of index
 

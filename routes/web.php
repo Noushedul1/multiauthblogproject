@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\{
+    PostController,
+    AdminController,
+    CategoryController,
+    DashboardController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +49,13 @@ Route::controller(AdminController::class)->group(function() {
 Route::controller(DashboardController::class)->group(function(){
     Route::get('admin/dashboard','index')->name('admin.dashboard');
 });
+
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::resource('category', CategoryController::class);
+
+    Route::resource('post',PostController::class);
+    Route::get('post_status/{id}',[PostController::class,'postStatus'])->name('postStatus');
 });
+
 // end for admin
 

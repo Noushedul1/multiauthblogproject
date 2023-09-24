@@ -14,7 +14,7 @@
                 <li class="list-inline-item">
                   <a href="author-single.html" class="card-meta-author">
                     <img src="{{ asset('') }}">
-                    <span>{{ Auth::guard('admin')->user()->name }}</span>
+                    {{-- <span>{{ Auth::guard('admin')->user()->name }}</span> --}}
                   </a>
                 </li>
                 <li class="list-inline-item">
@@ -89,7 +89,7 @@
                 </li> --}}
               </ul>
               <p>{{ $popularPost->sub_title }}</p>
-              <a href="{{ route('front.post_detials',$popularPost->id) }}l" class="btn btn-outline-primary">Read More</a>
+              <a href="{{ route('front.post_detials',$popularPost->id) }}" class="btn btn-outline-primary">Read More</a>
             </div>
           </article>
         </div>

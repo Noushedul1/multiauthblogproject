@@ -21,6 +21,7 @@
     <link rel="shortcut icon" href="{{ asset('frontend') }}/images/favicon.png" type="image/x-icon">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
+    @stack('front_link')
     <meta property="og:title" content="Reader | Hugo Personal Blog Template" />
     <meta property="og:description" content="This is meta description" />
     <meta property="og:type" content="website" />

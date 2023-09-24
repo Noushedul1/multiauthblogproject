@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 // use Session;
 
 class AdminController extends Controller
@@ -24,7 +25,7 @@ class AdminController extends Controller
         }
     }
     public function logout() {
-        // Session::flush();
+        Session::flush();
         Auth::guard('admin')->logout();
         return redirect()->reute('admin.login');
     }

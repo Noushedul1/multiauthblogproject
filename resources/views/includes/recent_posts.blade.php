@@ -18,7 +18,7 @@
             <li class="list-inline-item">
               <a href="" class="card-meta-author">
                 {{-- <img src="images/john-doe.jpg" alt="John Doe"> --}}
-                <span>{{ Auth::guard('admin')->user()->name }}</span>
+                {{-- <span>{{ Auth::guard('admin')->user()->name }}</span> --}}
               </a>
             </li>
             <li class="list-inline-item">

@@ -24,12 +24,13 @@ use App\Http\Controllers\Admin\{
 // start for front end
 Route::controller(FrontendController::class)->group(function(){
     Route::get('/','index');
-    Route::get('/contact','contact')->name('front.contact');
+    Route::get('/contact','contact')->name('front.contact')->middleware('auth');
     Route::get('/post_details/{id}','postDetails')->name('front.post_detials');
+    Route::post('/comment/{id})','comment')->name('front.comment.store');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,11 +47,11 @@ Route::controller(AdminController::class)->group(function() {
     Route::post('admin/store','store')->name('admin.store');
     Route::post('admin/logout','logout')->name('admin.logout');
 });
-Route::controller(DashboardController::class)->group(function(){
+Route::controller(DashboardController::class)->middleware('admin')->group(function(){
     Route::get('admin/dashboard','index')->name('admin.dashboard');
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     Route::resource('category', CategoryController::class);
 
     Route::resource('post',PostController::class);

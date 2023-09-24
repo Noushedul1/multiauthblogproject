@@ -16,38 +16,35 @@
                 <a class="dropdown-item" href="index-full.html">Homepage Full Width</a>
 
                 <a class="dropdown-item" href="index-full-left.html">Homepage Full With Left Sidebar</a>
-
-                <a class="dropdown-item" href="index-full-right.html">Homepage Full With Right Sidebar</a>
-
-                <a class="dropdown-item" href="index-list.html">Homepage List Style</a>
-
-                <a class="dropdown-item" href="index-list-left.html">Homepage List With Left Sidebar</a>
-
-                <a class="dropdown-item" href="index-list-right.html">Homepage List With Right Sidebar</a>
-
-                <a class="dropdown-item" href="index-grid.html">Homepage Grid Style</a>
-
-                <a class="dropdown-item" href="index-grid-left.html">Homepage Grid With Left Sidebar</a>
-
-                <a class="dropdown-item" href="index-grid-right.html">Homepage Grid With Right Sidebar</a>
-
               </div>
             </li>
+            @auth
             @if (Route::has('front.contact'))
             <li class="nav-item">
               <a class="nav-link" href="{{ route('front.contact') }}">Contact</a>
             </li>
-            @endif
-            @if (Route::has('login'))
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">Login</a>
+              <a class="nav-link" href="">{{ Auth::user()->name }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('frontLogout').submit();">Logout</a>
+              <form action="{{ route('logout') }}" method="post" id="frontLogout">
+                @csrf
+              </form>
             </li>
             @endif
-            @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route("register") }}">Register</a>
-            </li>
-            @endif
+                @else
+                @if (Route::has('login'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
+                @endif
+                @if (Route::has('register'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route("register") }}">Register</a>
+                </li>
+                @endif
+            @endauth
           </ul>
         </div>
 

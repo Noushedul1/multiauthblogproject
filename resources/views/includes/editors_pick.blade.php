@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{ $editorsPick->title }}</a></h3>
+              <h3 class="h4 mb-3"><a class="post-title" href="{{ route('front.post_detials',$editorsPick->id) }}">{{ $editorsPick->title }}</a></h3>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
                   <a href="author-single.html" class="card-meta-author">
@@ -66,7 +66,7 @@
               <img src="{{ asset('/storage/post_images/'.$popularPost->image) }}" class="card-img-top" alt="post-thumb">
             </div>
             <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{ $popularPost->title }}</a></h3>
+              <h3 class="h4 mb-3"><a class="post-title" href="{{ route('front.post_detials',$editorsPick->id) }}">{{ $popularPost->title }}</a></h3>
               <ul class="card-meta list-inline">
                 <li class="list-inline-item">
                   <a href="author-single.html" class="card-meta-author">

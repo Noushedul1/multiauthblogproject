@@ -16,9 +16,9 @@ class FrontendController extends Controller
     public function index() {
         $posts = Post::where('status',1)->paginate(2);
         $categories = Category::all();
-        $editorsPick = Post::latest()->first();
-        $trendingPosts = Post::take(3)->latest()->get();
-        $popularPost = Post::orderBy('title','ASC')->first(); //i think it would be based on amount of likes
+        $editorsPick = Post::where('status',1)->latest()->first();
+        $trendingPosts = Post::where('status',1)->take(3)->latest()->get();
+        $popularPost = Post::where('status',1)->orderBy('title','ASC')->first(); //i think it would be based on amount of likes
         return view('welcome',
         [
             'posts'=>$posts,

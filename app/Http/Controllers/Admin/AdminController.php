@@ -25,8 +25,9 @@ class AdminController extends Controller
         }
     }
     public function logout() {
-        Session::flush();
         Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->reute('admin.login');
     }
 }

@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $posts = Post::with('category')->paginate(5);
+        $posts = Post::with('category')->paginate(3);
         return view('admin.post.post',['posts'=>$posts]);
     }
 

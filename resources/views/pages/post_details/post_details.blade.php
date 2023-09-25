@@ -56,6 +56,7 @@
                         <p>{!! $comment->comment !!}</p>
 
                         <span class="text-black-800 mr-3 font-weight-600">{{ $comment->created_at->format('Y-M-D') }} at {{ $comment->created_at->format('h:i:s') }}</span>
+                        @auth
                         @php
                             $likes = DB::table('comment_likes')
                                     ->where('comment_id',$comment->id)
@@ -74,6 +75,8 @@
                             Like ({{ $likes->count() }})
                         </a>
                         @endif
+                        @endauth
+
                         {{-- <a class="text-primary font-weight-600" href="#!">Reply</a> --}}
                     </div>
                 </div>

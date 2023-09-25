@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="col-md-8">
-          <h3 class="h4 mb-3"><a class="post-title" href="">{{ $post->title }}</a></h3>
+          <h3 class="h4 mb-3"><a class="post-title" href="{{ route('front.post_detials',$post->id) }}">{{ $post->title }}</a></h3>
           <ul class="card-meta list-inline">
             <li class="list-inline-item">
               <a href="" class="card-meta-author">

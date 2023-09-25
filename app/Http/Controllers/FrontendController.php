@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Admin\Post;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
@@ -43,7 +44,7 @@ class FrontendController extends Controller
         $comments = $commentObj->join('users','users.id','=','comments.user_id')
         ->select('comments.*','users.name as user_name')
         ->where('comments.post_id',$id)
-        ->get();
+        ->paginate(3);
         return view('pages.post_details.post_details',[
             'post'=>$post,
             'comments'=>$comments
@@ -63,4 +64,19 @@ class FrontendController extends Controller
         return redirect()->back();
     }
     // end of comment
+
+    // start of contact
+    public function contactStore(Request $request) {
+        $request->validate([
+            'subject'=>'required',
+            'message'=>'required'
+        ]);
+        Contact::create([
+            'user_id' => Auth::user()->id,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+        return redirect()->back();
+    }
+    // end of contact
 }

@@ -27,6 +27,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/contact','contact')->name('front.contact')->middleware('auth');
     Route::get('/post_details/{id}','postDetails')->name('front.post_detials');
     Route::post('/comment/{id})','comment')->name('front.comment.store');
+    Route::post('/contact/store','contactStore')->name('front.contact.store');
 });
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -60,6 +60,7 @@
                     </div>
                 </div>
                 @endforeach
+                {{ $comments->links() }}
               {{-- <div class="media d-block d-sm-flex">
                     <div class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
                         <img class="mr-3" src="{{ asset('frontend') }}/images/post/arrow.png" alt="">

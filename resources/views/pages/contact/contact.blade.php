@@ -1,5 +1,8 @@
 @extends('app')
 @section('title','Blog contact')
+@push('front_link')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 @section('content')
 <div class="header text-center">
     <div class="container">
@@ -73,22 +76,24 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Velit massa vitae felis augue. In venenatis scelerisque accumsan egestas mattis. Massa feugiat in sem pellentesque.</p>
           </div>
 
-          <form method="POST" action="#">
+          <form action="{{ route('front.contact.store') }}" method="post">
+              @csrf
+              @if ($errors->any())
+              <div class="text-danger">
+                  @foreach ($errors->all() as $error)
+                  <ul>
+                      <li>{{ $error }}</li>
+                  </ul>
+                  @endforeach
+              </div>
+              @endif
             <div class="form-group">
-              <label for="name">Your Name (Required)</label>
-              <input type="text" name="name" id="name" class="form-control" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Your Email Address (Required)</label>
-              <input type="email" name="email" id="email" class="form-control" placeholder="johndoe@gmail.com" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Reason For Contact</label>
-              <input type="email" name="email" id="email" class="form-control" placeholder="Advertising">
+              <label for="subject">Reason For Contact</label>
+              <input type="text" name="subject" id="subject" class="form-control">
             </div>
             <div class="form-group">
               <label for="message">Your Message Here</label>
-              <textarea name="message" id="message" class="form-control" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+              <textarea name="message" id="contact" class="form-control" placeholder="Lorem ipsum dolor sit amet..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send Now</button>
           </form>
@@ -96,4 +101,16 @@
       </div>
     </div>
   </section>
+  @push('front_script')
+<!-- Summernote JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#contact').summernote({
+            height: 200
+        });
+    });
+</script>
+
+@endpush
 @endsection

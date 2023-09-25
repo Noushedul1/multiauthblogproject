@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\Admin\{
-    PostController,
-    AdminController,
-    CategoryController,
-    DashboardController
-};
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +22,15 @@ use App\Http\Controllers\Admin\{
 // start for front end
 Route::controller(FrontendController::class)->group(function(){
     Route::get('/','index');
-    Route::get('/contact','contact')->name('front.contact')->middleware('auth');
     Route::get('/post_details/{id}','postDetails')->name('front.post_detials');
     Route::post('/comment/{id})','comment')->name('front.comment.store');
+
+    Route::get('/contact','contact')->name('front.contact')->middleware('auth');
     Route::post('/contact/store','contactStore')->name('front.contact.store');
+
+    Route::get('/comment_likes/{id}','commentLikes')->name('front.comment.like');
+    Route::get('/comment_unlikes/{id}','commentUnlikes')->name('front.comment.unlike');
+
 });
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

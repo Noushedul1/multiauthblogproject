@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Admin\Post;
+use App\Models\CommentLike;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use Illuminate\Support\Facades\Auth;
@@ -79,4 +80,20 @@ class FrontendController extends Controller
         return redirect()->back();
     }
     // end of contact
+
+    // start of like
+    public function commentLikes($id) {
+        CommentLike::create([
+            'user_id' => Auth::user()->id,
+            'comment_id' => $id
+        ]);
+        return redirect()->back();
+    }
+    // end of like
+    // start of like
+    public function commentUnlikes($id) {
+        CommentLike::where('user_id',Auth::user()->id)->where('comment_id',$id)->delete();
+        return redirect()->back();
+    }
+    // end of like
 }

@@ -56,7 +56,25 @@
                         <p>{!! $comment->comment !!}</p>
 
                         <span class="text-black-800 mr-3 font-weight-600">{{ $comment->created_at->format('Y-M-D') }} at {{ $comment->created_at->format('h:i:s') }}</span>
-                        <a class="text-primary font-weight-600" href="#!">Reply</a>
+                        @php
+                            $likes = DB::table('comment_likes')
+                                    ->where('comment_id',$comment->id)
+                                    ->get();
+                            $liker_user = DB::table('comment_likes')
+                                        ->where('comment_id',$comment->id)
+                                        ->where('user_id',auth()->user()->id)
+                                        ->first();
+                        @endphp
+                        @if ($liker_user)
+                        <a href="{{ route('front.comment.unlike',$comment->id) }}">
+                            Unlike ({{ $likes->count() }})
+                        </a>
+                        @else
+                        <a href="{{ route('front.comment.like',$comment->id) }}">
+                            Like ({{ $likes->count() }})
+                        </a>
+                        @endif
+                        {{-- <a class="text-primary font-weight-600" href="#!">Reply</a> --}}
                     </div>
                 </div>
                 @endforeach

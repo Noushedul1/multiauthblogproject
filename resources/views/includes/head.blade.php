@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" media="screen">
 
     <!--Favicon-->
-    <link rel="shortcut icon" href="{{ asset('frontend') }}/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('frontend') }}/images/blog.png" type="image/x-icon">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
     @stack('front_link')

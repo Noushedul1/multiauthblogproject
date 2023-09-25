@@ -15,13 +15,22 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" value="{{ $category->name }}">
+                    <input type="text" name="name" class="form-control @error('name') is-invalid
+                    @enderror" value="{{ $category->name }}">
+                    @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Description</label>
-                    <textarea name="description" id="category_edit" cols="40" rows="10" class="form-control">
+                    <textarea name="description" id="category_edit" cols="40" rows="10" class="form-control @error('description') is-invalid
+
+                    @enderror">
                         {{ $category->description }}
                     </textarea>
+                    @error('description')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <input type="submit" class="btn btn-primary" value="Update Category">

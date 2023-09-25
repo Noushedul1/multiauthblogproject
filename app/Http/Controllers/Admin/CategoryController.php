@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::all();
         return view('admin.category.category',['categories'=>$categories]);
     }
 
@@ -71,9 +71,16 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        Category::findOrFail($id)->update($request->validated());
+        $request->validate([
+            'name'=> 'required',
+            'description'=> 'required'
+        ]);
+        Category::findOrFail($id)->update([
+            'name'=>$request->name,
+            'description'=>$request->description
+        ]);
         $notification = array('message'=>'Category Updated','alert-type'=>'success');
         return redirect()->route('admin.category.create')->with($notification);
     }

@@ -1,11 +1,14 @@
 @extends('admin.admin')
 @section('title','Category')
+@push('dashboard_link')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+@endpush
 @section('content')
  <div class="container">
      <div class="row">
          <div class="col-md-8 offset-2">
              <h4 class="text-center">Category Management</h4>
-             <table class="table table-bordered">
+             <table class="table table-bordered" id="category">
                  <thead>
                      <tr>
                          <th>No</th>
@@ -45,8 +48,16 @@
                  </tbody>
                  {{-- {{ $categories->links() }} --}}
                 </table>
-                {{ $categories->links() }}
+                {{-- {{ $categories->links() }} --}}
          </div>
      </div>
  </div>
+ @push('dashboard_script')
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+    $('#category').DataTable();
+} );
+</script>
+@endpush
 @endsection

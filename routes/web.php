@@ -25,6 +25,8 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/post_details/{id}','postDetails')->name('front.post_detials');
     Route::post('/comment/{id})','comment')->name('front.comment.store');
 
+    Route::get('/filter_by_category/{id}','filterCategory')->name('front.filter_by_category');
+
     Route::get('/contact','contact')->name('front.contact')->middleware('auth');
     Route::post('/contact/store','contactStore')->name('front.contact.store');
 

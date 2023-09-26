@@ -31,6 +31,19 @@ class FrontendController extends Controller
     }
     // end of index
 
+    // start of filterCategory
+    public function filterCategory($id) {
+        $postObj = new Post();
+        $posts = $postObj->join('categories','categories.id','=','posts.category_id')
+        ->select('posts.*','categories.name as category_name')
+        ->where('posts.status',1)
+        ->where('posts.category_id',$id)
+        ->orderBy('posts.id','desc')
+        ->get();
+        return view('filter_by_category',compact('posts'));
+    }
+    // end of filterCategory
+
     // start of contact
     public function contact() {
         return view('pages.contact.contact');

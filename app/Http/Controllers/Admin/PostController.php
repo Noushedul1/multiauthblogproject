@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -42,6 +43,9 @@ class PostController extends Controller
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = time().".".$extension;
             $image->storeAs('public/post_images',$fileNameToStore);
+            // $myimage = Image::make($image);
+            // $myimage->resize(600,360);
+            // $myimage->save();
         }else {
             $fileNameToStore = 'noimage.jpg';
         }

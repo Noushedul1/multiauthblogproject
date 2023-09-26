@@ -6,7 +6,6 @@ use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-// use Session;
 
 class AdminController extends Controller
 {
@@ -25,7 +24,9 @@ class AdminController extends Controller
         }
     }
     public function logout() {
+        Session::flush();
         Auth::guard('admin')->logout();
+        $request->session()->regenerate();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->reute('admin.login');

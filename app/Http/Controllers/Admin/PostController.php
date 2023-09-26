@@ -53,7 +53,7 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->image = $fileNameToStore;
         $post->save();
-        $notification = array('message','Post successfully Created','alert-type','success');
+        $notification = array('message'=>'Post successfully Created','alert-type'=>'success');
         return redirect()->route('admin.post.create')->with($notification);
     }
     /**
@@ -103,14 +103,16 @@ class PostController extends Controller
         if($request->hasFile('image')) {
             if($post->image != 'noimage.jpg') {
                 Storage::delete('public/post_images/'.$post->image);
+                $post->image = $fileNameToStore;
             }
-            // else {
-            //     $post->image = $fileNameToStore;
-            // }
+            else {
+                $post->image = $fileNameToStore;
+            }
         }
-        $post->image = $fileNameToStore;
+        // $post->image = $fileNameToStore;
         $post->save();
-        return redirect()->route('admin.post.create');
+        $notification = array('message'=>'Post Updated','alert-type'=>'success');
+        return redirect()->route('admin.post.create')->with($notification);
     }
     // start of  status update
     public function postStatus($id) {
@@ -135,6 +137,7 @@ class PostController extends Controller
             Storage::delete('public/post_images/'.$post->image);
         }
         $post->delete();
-        return redirect()->route('admin.post.create');
+        $notification = array('message'=>'Post Deleted','alert-type'=>'error');
+        return redirect()->route('admin.post.create')->with($notification);
     }
 }

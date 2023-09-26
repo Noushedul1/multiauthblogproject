@@ -35,7 +35,7 @@
             break;
 
         case 'error':
-            toastr.success("{{ Session::get('message') }}",'Error',{timeOut: 1200});
+            toastr.error("{{ Session::get('message') }}",'Error',{timeOut: 1200});
             break;
     }
     @endif

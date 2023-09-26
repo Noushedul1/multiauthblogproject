@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endpush
 @section('content')
-<div class="conatiner">
+<div class="container">
     <div class="row">
         <div class="col-md-6 offset-3">
             <h4 class="text-center">

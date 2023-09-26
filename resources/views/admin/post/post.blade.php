@@ -30,26 +30,30 @@
                         <td>{{ $post->category->name }}</td>
                         {{-- <td class="badge {{ $post->status === 1 ? 'badge-primary' : 'badge-danger' }}">{{ $post->status === 1 ? "Active" : "Deactive" }}</td>
                         <td> --}}
-                        <td>
-                            <a href="{{ route('admin.postStatus',$post->id) }}" class="btn {{ $post->status === 1 ? 'badge-primary' : 'badge-danger' }}">
-                                {{ $post->status === 1 ? 'Active' : 'Deactive' }}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ route('admin.post.edit',$post->id) }}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="{{ route('admin.post.destroy',$post->id) }}" class="text-danger" onclick="event.preventDefault();document.getElementById('deletePost').submit();">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <form action="{{ route('admin.post.destroy',$post->id) }}" method="post" id="deletePost">
-                            @csrf
-                            @method('DELETE')
-                            </form>
-                            <a href="{{ route('admin.post.show',$post->id) }}">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </td>
+
+                            <td>
+                                <a href="{{ route('admin.postStatus',$post->id) }}" class="btn {{ $post->status === 1 ? 'badge-primary' : 'badge-danger' }}">
+                                    {{ $post->status === 1 ? 'Active' : 'Deactive' }}
+                                </a>
+                            </td>
+                            <td>
+                                @if (Auth::guard('admin')->user()->id == 1)
+                                <a href="{{ route('admin.post.edit',$post->id) }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{{ route('admin.post.destroy',$post->id) }}" class="text-danger" onclick="event.preventDefault();document.getElementById('deletePost').submit();">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                @endif
+                                <form action="{{ route('admin.post.destroy',$post->id) }}" method="post" id="deletePost">
+                                @csrf
+                                @method('DELETE')
+                                </form>
+                                <a href="{{ route('admin.post.show',$post->id) }}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+
                     </tr>
                     @endforeach
                 </tbody>

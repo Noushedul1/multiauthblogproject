@@ -57,8 +57,10 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Post</h6>
+                @if (Auth::guard('admin')->user()->id == 1)
                 @if(Route::has('admin.post.index'))
                 <a class="collapse-item" href="{{ route('admin.post.index') }}">Create Post</a>
+                @endif
                 @endif
                 @if (Route::has('admin.post.create'))
                 <a class="collapse-item" href="{{ route('admin.post.create') }}">Manage Post</a>

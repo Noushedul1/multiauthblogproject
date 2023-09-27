@@ -144,4 +144,5 @@ class PostController extends Controller
         $notification = array('message'=>'Post Deleted','alert-type'=>'error');
         return redirect()->route('admin.post.create')->with($notification);
     }
+
 }

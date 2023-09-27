@@ -43,12 +43,12 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard');
         }
     }
-    public function logout() {
-        Session::flush();
+    public function logout(Request $request) {
         Auth::guard('admin')->logout();
+
+        $request->session()->flush();
+
         $request->session()->regenerate();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->reute('admin.login');
+        return redirect()->route('admin.login');
     }
 }

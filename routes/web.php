@@ -51,6 +51,8 @@ require __DIR__.'/auth.php';
 Route::controller(AdminController::class)->group(function() {
     Route::get('admin/login','login')->name('admin.login');
     Route::post('admin/store','store')->name('admin.store');
+    Route::get('admin/register','register')->name('admin.register');
+    Route::post('admin/register/store','registerStore')->name('admin.register.store');
     Route::post('admin/logout','logout')->name('admin.logout');
 });
 Route::controller(DashboardController::class)->middleware('admin')->group(function(){
